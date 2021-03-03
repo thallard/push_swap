@@ -1,5 +1,6 @@
 SRCS =	srcs/main.c \
-		srcs/utils.c
+		srcs/utils.c \
+		srcs/operations/push_stacks.c
 
 OBJS = ${SRCS:.c=.o}
 

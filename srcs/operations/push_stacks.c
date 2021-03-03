@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   push_stacks.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/03 16:04:25 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/03 17:17:57 by thallard         ###   ########lyon.fr   */
+/*   Created: 2021/03/03 16:54:22 by thallard          #+#    #+#             */
+/*   Updated: 2021/03/03 17:41:48 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/global.h"
+#include "../../includes/global.h"
 
-int		get_tab_length(char **tab)
+int		swap_a(t_global *g)
 {
-	int		i;
+	char	*tmp;
 
-	i = -1;
-	while (tab[++i])
-		;
-	return (i);
+	if (get_tab_length(g->a) >= 2)
+	{
+		tmp = g->a[get_tab_length(g->a) - 2];
+		g->a[get_tab_length(g->a) - 2] = g->a[get_tab_length(g->a) - 1];
+		g->a[get_tab_length(g->a) - 1] = tmp;
+	}
+	print_stack(g);
+	return (1);
 }
 
-void	print_stack(t_global *g)
+int		swap_b(t_global *g)
 {
-	int		i;
-
-	i = -1;
-	printf("\n");
-	while (g->a[++i])
-	{
-		printf("%s\n", g->a[i]);
-	}
-	printf("\n");
+	
 }

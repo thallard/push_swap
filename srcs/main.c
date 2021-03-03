@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 14:58:48 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/03 16:42:40 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/03 17:17:29 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int		ft_init_stack(t_global *g, int argc, char **argv)
 	j = -1;
 	i = 0;
 	g->a = malloc(sizeof(char *) * argc);
+	g->b = malloc(sizeof(char *) * argc);
+	g->b[0] = NULL;
 	while (++i < argc && argv[i])
 	{
 		if (!ft_contains_alpha(argv[i]))
@@ -66,6 +68,7 @@ int		main(int argc, char **argv)
 	global = malloc(sizeof(t_global));
 	if (!ft_init_stack(global, argc, argv))
 		printf("Error\n");
+	swap_a(global);
 	print_stack(global);
 	return (0);
 }
