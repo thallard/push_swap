@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 14:58:48 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/03 16:27:11 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/03 16:29:13 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		ft_check_doubles(t_global *g, int argc)
 
 	j = 0;
 	i = -1;
-	while (j++ < argc - 2 && (i = -1))
+	while (j++ < argc - 2 && (i = -1) < 0)
 		while (g->a[++i])
 			if (!ft_strncmp(g->a[i], g->a[j], ft_strlen(g->a[i])))
 				return (0);
@@ -46,12 +46,9 @@ int		ft_init_stack(t_global *g, int argc, char **argv)
 	i = 0;
 	g->a = malloc(sizeof(char *) * argc);
 	while (++i < argc && argv[i])
-	{
 		if (!ft_contains_alpha(argv[i]))
 			return (0);
-		// g->a[++j] = malloc(sizeof(char) * 100);
 		g->a[++j] = argv[i];
-	}
 	g->a[++j] = NULL;
 	if (!ft_check_doubles(g, argc))
 		return (0);
