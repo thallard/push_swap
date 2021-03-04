@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_stacks.c                                      :+:      :+:    :+:   */
+/*   rotate_stacks.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/03 16:54:22 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/03 17:41:48 by thallard         ###   ########lyon.fr   */
+/*   Created: 2021/03/04 15:17:24 by thallard          #+#    #+#             */
+/*   Updated: 2021/03/04 15:32:55 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/global.h"
 
-int		swap_a(t_global *g)
+// ra : rotate a - décale d’une position vers le haut tous les élements de la pile a.
+// Le premier élément devient le dernier.
+
+void	rotate_a(t_global *g)
 {
+	char	*first;
 	char	*tmp;
+	int		i;
 
-	if (get_tab_length(g->a) >= 2)
+	i = get_tab_length(g->a) - 1;
+	first = g->a[i];
+	while (i > 0)
 	{
-		tmp = g->a[get_tab_length(g->a) - 2];
-		g->a[get_tab_length(g->a) - 2] = g->a[get_tab_length(g->a) - 1];
-		g->a[get_tab_length(g->a) - 1] = tmp;
+		tmp = g->a[i];
+		g->a[i] = g->a[i - 1];
+		g->a[i - 1] = tmp;
+		i--;
 	}
-	print_stack(g);
-	return (1);
-}
-
-int		swap_b(t_global *g)
-{
-	
+	g->a[0] = first;
+	print_stacks(g);
 }
