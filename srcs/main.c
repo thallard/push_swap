@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 14:58:48 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/05 14:47:38 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/06 00:49:20 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,41 +67,29 @@ int		ft_split_stacks(t_global *g)
 
 	pos = 0;
 	i = -1;
-	while (get_tab_length(g->a) >= get_tab_length(g->b) - 5)
+	while (get_tab_length(g->a) != 0)
+	{
+			push_b(g);
+	}
+	while (get_tab_length(g->b) != 0)
 	{
 	
-		if (g->min[pos] == ft_atoi(g->a[get_tab_length(g->a) - 1]))
+			
+		if (get_tab_length(g->b) / 2 >= find_num(g, g->b, find_min(g, g->b)))
 		{
-			rotate_a(g);
-			pos++;
-		}
-		else
-			push_b(g);
-		// if (get_tab_length(g->a) >= 2 && ft_atoi(g->a[get_tab_length(g->a) - 1]) > ft_atoi(g->a[get_tab_length(g->a) - 2]))
-		// 	swap_a(g);
-		if (get_tab_length(g->b) >= 2 && ft_atoi(g->b[get_tab_length(g->b) - 1]) > ft_atoi(g->b[get_tab_length(g->b) - 2]))
-			swap_b(g);
-		if (get_tab_length(g->b) >= 2 && g->min[pos] == ft_atoi(g->b[get_tab_length(g->b) - 1]))
-		{
+			while (g->min[pos] != ft_atoi(g->b[get_tab_length(g->b) - 1]))
+				rotate_b(g);
 			push_a(g);
-			rotate_a(g);
 			pos++;
 		}
-	
+			else if (get_tab_length(g->b) / 2 < find_num(g, g->b, find_min(g, g->b)))
+			{
+				while (g->min[pos] != ft_atoi(g->b[get_tab_length(g->b) - 1]))
+				reverse_rotate_b(g);
+				pos++;
+			push_a(g);
+			}
 	}
-	// while (g->min[pos] != ft_atoi(g->b[get_tab_length(g->a) - 1]))
-	// {
-	// 	push_b(g);
-	// 	if (get_tab_length(g->b) >= 2 && ft_atoi(g->b[get_tab_length(g->b) - 1]) > ft_atoi(g->b[get_tab_length(g->b) - 2]))
-	// 		swap_b(g);
-	// }
-	// rotate_a(g);
-	// if (get_tab_length(g->b) >= 2 && g->min[pos] == ft_atoi(g->b[get_tab_length(g->b) - 1]))
-	// 	{
-	// 		push_a(g);
-	// 		rotate_a(g);
-	// 		pos++;
-	// 	}
 	return (1);
 }
 
@@ -124,6 +112,7 @@ int		main(int argc, char **argv)
 	{
 		global->min[size] = ft_atoi(global->a[size]);
 	}
+	global->size = size;
 	int				temp;
 
 	int 	i;

@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:06:00 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/05 14:30:21 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/06 00:42:17 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct		s_global
 	char	**b;
 	int		coups;
 	int		*min;
+	int		size;
 }					t_global;
 
 void	print_stack_b(t_global *g);
@@ -38,8 +39,13 @@ int		swap_b(t_global *g);
 int		push_a(t_global *g);
 int		push_b(t_global *g);
 void	rotate_a(t_global *g);
+void	rotate_b(t_global *g);
+void	reverse_rotate_b(t_global *g);
 
 int		is_max(t_global *g, char **stack, int value);
 int		get_min(t_global *g, char **stack);
+int			find_num(t_global *g, char **stack, int value);
+int			find_max(t_global *g, char **stack);
+int			find_min(t_global *g, char **stack);
 
 #endif

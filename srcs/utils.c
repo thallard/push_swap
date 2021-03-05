@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 16:04:25 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/05 14:41:07 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/06 00:43:44 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	print_stacks(t_global *g)
 {
 	int		i;
 
-	usleep(100000);
+	usleep(30000);
 	i = -1;
 		printf("\x1b[2J");
     printf("\x1b[H");
@@ -60,7 +60,7 @@ void	print_stacks(t_global *g)
 	while (++i < 9999)
 	{
 		if (i < get_tab_length(g->a))
-			printf("|\e[92m%7s        \e[0m", g->a[get_tab_length(g->a) - 1 -i]);
+			printf("|\e[92m%7s        \e[0m", g->a[get_tab_length(g->a) - 1 - i]);
 		else
 			printf("|\e[92m%7s        \e[0m", "\0");
 		if (i < get_tab_length(g->b))
