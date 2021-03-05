@@ -1,5 +1,6 @@
 SRCS =	srcs/main.c \
 		srcs/utils.c \
+		srcs/comparaisons.c \
 		srcs/operations/push_and_swap_stacks.c \
 		srcs/operations/rotate_stacks.c
 

@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 14:58:48 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/04 15:33:35 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/05 14:47:38 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,17 +63,45 @@ int		ft_init_stack(t_global *g, int argc, char **argv)
 int		ft_split_stacks(t_global *g)
 {
 	int		i;
+	int		pos;
 
+	pos = 0;
 	i = -1;
-	while (get_tab_length(g->a) != 0)
+	while (get_tab_length(g->a) >= get_tab_length(g->b) - 5)
 	{
-		push_b(g);
+	
+		if (g->min[pos] == ft_atoi(g->a[get_tab_length(g->a) - 1]))
+		{
+			rotate_a(g);
+			pos++;
+		}
+		else
+			push_b(g);
 		// if (get_tab_length(g->a) >= 2 && ft_atoi(g->a[get_tab_length(g->a) - 1]) > ft_atoi(g->a[get_tab_length(g->a) - 2]))
 		// 	swap_a(g);
-		if (get_tab_length(g->b) >= 2 && ft_atoi(g->b[get_tab_length(g->b) - 1]) < ft_atoi(g->b[get_tab_length(g->b) - 2]))
+		if (get_tab_length(g->b) >= 2 && ft_atoi(g->b[get_tab_length(g->b) - 1]) > ft_atoi(g->b[get_tab_length(g->b) - 2]))
 			swap_b(g);
-		
+		if (get_tab_length(g->b) >= 2 && g->min[pos] == ft_atoi(g->b[get_tab_length(g->b) - 1]))
+		{
+			push_a(g);
+			rotate_a(g);
+			pos++;
+		}
+	
 	}
+	// while (g->min[pos] != ft_atoi(g->b[get_tab_length(g->a) - 1]))
+	// {
+	// 	push_b(g);
+	// 	if (get_tab_length(g->b) >= 2 && ft_atoi(g->b[get_tab_length(g->b) - 1]) > ft_atoi(g->b[get_tab_length(g->b) - 2]))
+	// 		swap_b(g);
+	// }
+	// rotate_a(g);
+	// if (get_tab_length(g->b) >= 2 && g->min[pos] == ft_atoi(g->b[get_tab_length(g->b) - 1]))
+	// 	{
+	// 		push_a(g);
+	// 		rotate_a(g);
+	// 		pos++;
+	// 	}
 	return (1);
 }
 
@@ -89,8 +117,29 @@ int		main(int argc, char **argv)
 			printf("Error\n");
 		exit(0);	
 	}
-	
+	global->min = malloc(sizeof(int) * 100);
+	int	size;
+	size = -1;
+	while (global->a[++size])
+	{
+		global->min[size] = ft_atoi(global->a[size]);
+	}
+	int				temp;
 
+	int 	i;
+	i = 0;
+	while (i < (size - 1))
+	{
+		if (global->min[i] > global->min[i + 1])
+		{
+			temp = global->min[i];
+			global->min[i] = global->min[i + 1];
+			global->min[i + 1] = temp;
+			i = 0;
+		}
+		else
+			i++;
+	}
 
 	printf("\x1b[2J");
 	print_stacks(global);
