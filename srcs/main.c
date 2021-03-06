@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 14:58:48 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/06 00:49:20 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/06 01:06:21 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,15 @@ int		ft_split_stacks(t_global *g)
 	{
 	
 			
-		if (get_tab_length(g->b) / 2 >= find_num(g, g->b, find_min(g, g->b)))
+		if (get_tab_length(g->b) / 2 <= find_num(g, g->b, find_min(g, g->b)))
 		{
+			dprintf(1, "debug de la taille / 2 %d et find num = %d\n", get_tab_length(g->b) / 2, find_num(g, g->b, find_min(g, g->b)));
 			while (g->min[pos] != ft_atoi(g->b[get_tab_length(g->b) - 1]))
 				rotate_b(g);
 			push_a(g);
 			pos++;
 		}
-			else if (get_tab_length(g->b) / 2 < find_num(g, g->b, find_min(g, g->b)))
+		if (get_tab_length(g->b) / 2 > find_num(g, g->b, find_min(g, g->b)))
 			{
 				while (g->min[pos] != ft_atoi(g->b[get_tab_length(g->b) - 1]))
 				reverse_rotate_b(g);
