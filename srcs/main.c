@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 14:58:48 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/06 01:06:21 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/06 16:53:18 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		ft_contains_alpha(char *num)
 
 	i = -1;
 	while (num[++i])
-		if (!ft_isdigit(num[i]) && num[i] != '-')
+		if (!ft_isdigit(num[i]) && num[i] != '-' && num[i] != ' ')
 			return (0);
 	return (1);
 }
@@ -38,6 +38,23 @@ int		ft_check_doubles(t_global *g, int argc)
 	return (1);
 }
 
+int		fill_content_spaces(t_global *g, int line, char *str)
+{
+	int		i;
+
+	i = -1;
+	while (++i <= (int)ft_strlen(str) && str[i])
+	{
+		if (str[i] != ' ')
+		{
+			dprintf(1, "debug de str = %s\n", &str[i]);
+			g->a[++line] = ft_itoa(ft_atoi(&str[i]));
+			i += ft_strlen(g->a[line]);
+		}
+	}
+	return (line);
+}
+
 int		ft_init_stack(t_global *g, int argc, char **argv)
 {
 	int		i;
@@ -45,14 +62,17 @@ int		ft_init_stack(t_global *g, int argc, char **argv)
 
 	j = -1;
 	i = 0;
-	g->a = malloc(sizeof(char *) * argc);
-	g->b = malloc(sizeof(char *) * argc);
+	g->a = malloc(sizeof(char *) * (argc + 1000));
+	g->b = malloc(sizeof(char *) * (argc + 1000));
 	g->b[0] = NULL;
 	while (++i < argc && argv[i])
 	{
 		if (!ft_contains_alpha(argv[i]))
 			return (0);
-		g->a[++j] = ft_itoa(ft_atoi(argv[i]));
+		if (ft_strchr(argv[i], ' '))
+			j = fill_content_spaces(g, j, argv[i]);
+		else
+			g->a[++j] = ft_itoa(ft_atoi(argv[i]));
 	}
 	g->a[++j] = NULL;
 	if (!ft_check_doubles(g, argc))
@@ -69,27 +89,33 @@ int		ft_split_stacks(t_global *g)
 	i = -1;
 	while (get_tab_length(g->a) != 0)
 	{
-			push_b(g);
+			// if (get_tab_length(g->a) == 1 && ft_atoi(g->a[0]) == g->min[0])
+			// 	break ;
+				push_b(g);
+			// if ((find_min(g, g->b) != ft_atoi(g->b[get_tab_length(g->b) - 1])))
+			// 	rotate_b(g);
+			// while (find_min(g, g->b) != ft_atoi(g->b[get_tab_length(g->b) - 1]))
+			// 	if (get_tab_length(g->b) >= 2)
+			// 		rotate_b(g);
+			// 	else
+			// 		break ;
 	}
 	while (get_tab_length(g->b) != 0)
 	{
-	
-			
-		if (get_tab_length(g->b) / 2 <= find_num(g, g->b, find_min(g, g->b)))
+		if (get_tab_length(g->b) / 2 <= find_num(g, g->b, find_max(g, g->b)))
 		{
-			dprintf(1, "debug de la taille / 2 %d et find num = %d\n", get_tab_length(g->b) / 2, find_num(g, g->b, find_min(g, g->b)));
-			while (g->min[pos] != ft_atoi(g->b[get_tab_length(g->b) - 1]))
+			while (!is_max(g, g->b, ft_atoi(g->b[get_tab_length(g->b) - 1])))
 				rotate_b(g);
 			push_a(g);
 			pos++;
 		}
-		if (get_tab_length(g->b) / 2 > find_num(g, g->b, find_min(g, g->b)))
-			{
-				while (g->min[pos] != ft_atoi(g->b[get_tab_length(g->b) - 1]))
+		if (get_tab_length(g->b) / 2 > find_num(g, g->b, find_max(g, g->b)))
+		{
+			while (!is_max(g, g->b, ft_atoi(g->b[get_tab_length(g->b) - 1])))
 				reverse_rotate_b(g);
-				pos++;
+			pos++;
 			push_a(g);
-			}
+		}
 	}
 	return (1);
 }
@@ -106,7 +132,7 @@ int		main(int argc, char **argv)
 			printf("Error\n");
 		exit(0);	
 	}
-	global->min = malloc(sizeof(int) * 100);
+	global->min = malloc(sizeof(int) * 10000);
 	int	size;
 	size = -1;
 	while (global->a[++size])
@@ -133,13 +159,6 @@ int		main(int argc, char **argv)
 
 	printf("\x1b[2J");
 	print_stacks(global);
-
-	// swap_a(global);
-	// push_b(global);
-	// push_b(global);
-	// push_b(global);
-	// push_b(global);
 	ft_split_stacks(global);
-	// push_a(global);
 	return (0);
 }
