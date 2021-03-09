@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 16:04:25 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/06 16:58:35 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/09 17:03:29 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	print_stacks(t_global *g)
 {
 	int		i;
 
-	// usleep(100000);
+	// usleep(010000);
 	i = -1;
 	// 	printf("\x1b[2J");
     // printf("\x1b[H");
@@ -71,7 +71,7 @@ void	print_stacks(t_global *g)
 	// 		break ;
 	// }
 	g->coups++;
-	// printf("|_______________|_______________|\n");
+	printf("|_______________|_______________|\n");
 	printf("| Coups = \033[0;32m%-6d\e[0m| Action = \033[0;35msa\e[0m   |\n", g->coups);
 
 }

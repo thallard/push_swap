@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 14:58:48 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/06 16:53:18 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/09 17:05:50 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,37 +84,69 @@ int		ft_split_stacks(t_global *g)
 {
 	int		i;
 	int		pos;
+	int		start, end;
+	int		push;
 
+	push = 20;
+	start = 0;
+	end = push;
 	pos = 0;
 	i = -1;
 	while (get_tab_length(g->a) != 0)
 	{
-			// if (get_tab_length(g->a) == 1 && ft_atoi(g->a[0]) == g->min[0])
-			// 	break ;
-				push_b(g);
-			// if ((find_min(g, g->b) != ft_atoi(g->b[get_tab_length(g->b) - 1])))
-			// 	rotate_b(g);
-			// while (find_min(g, g->b) != ft_atoi(g->b[get_tab_length(g->b) - 1]))
-			// 	if (get_tab_length(g->b) >= 2)
-			// 		rotate_b(g);
-			// 	else
-			// 		break ;
+		// push_b(g);
+		dprintf(1, "debug end et start = %d %d\n\n", start, end);
+		pos = find_num_plage(g, start, end);
+		if (pos == -100)
+		{
+			dprintf(1, "debug end et start dans le if pos = -1   = %d %d\n\n", start, end);
+			end += push;
+			start += push;
+			continue ;
+		}
+		if (pos == get_tab_length(g->a) - 1)
+			push_b(g);
+		else if (get_tab_length(g->a) / 2 <= pos)
+		{
+			while (pos-- > 0)
+				rotate_a(g);
+			push_b(g);
+		}
+		else if (get_tab_length(g->a) / 2 >= pos)
+		{
+			int	save = get_tab_length(g->a);
+			dprintf(1, "debug de pos ici = %d %d\n", pos, save);
+			if (!pos)
+			{
+				reverse_rotate_a(g);
+					push_b(g);
+				continue ;
+			}
+			
+			while (pos-- >= 0)
+				reverse_rotate_a(g);
+			push_b(g);
+				
+		}
 	}
+		
 	while (get_tab_length(g->b) != 0)
 	{
 		if (get_tab_length(g->b) / 2 <= find_num(g, g->b, find_max(g, g->b)))
 		{
+				dprintf(1, "debug de pos ici = %d %d\n", find_num(g, g->b, find_max(g, g->b)), find_max(g, g->b));
 			while (!is_max(g, g->b, ft_atoi(g->b[get_tab_length(g->b) - 1])))
 				rotate_b(g);
 			push_a(g);
-			pos++;
 		}
 		if (get_tab_length(g->b) / 2 > find_num(g, g->b, find_max(g, g->b)))
 		{
+			dprintf(1, "debug de pos ici = %d %d\n", find_num(g, g->b, find_max(g, g->b)), find_max(g, g->b));
 			while (!is_max(g, g->b, ft_atoi(g->b[get_tab_length(g->b) - 1])))
 				reverse_rotate_b(g);
 			pos++;
 			push_a(g);
+			dprintf(1, "valeur du min = %d\n", find_min(g, g->b));
 		}
 	}
 	return (1);

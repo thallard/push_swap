@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 15:17:24 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/06 00:22:10 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 21:32:23 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,27 @@ void	reverse_rotate_b(t_global *g)
 	}
 	g->b[get_tab_length(g->b) - 1] = last;
 	print_stacks(g);
+}
+
+void	reverse_rotate_a(t_global *g)
+{
+		char	*last;
+	char	*tmp;
+	int		i;
+
+	i = 0;
+	if (get_tab_length(g->a) >= 2)
+	{
+		last = g->a[i];
+		while (i < get_tab_length(g->a) - 1)
+		{
+			tmp = g->a[i];
+			g->a[i] = g->a[i + 1];
+			g->a[i + 1] = tmp;
+			i++;
+		}
+		g->a[get_tab_length(g->a) - 1] = last;
+		
+		print_stacks(g);
+	}
 }
