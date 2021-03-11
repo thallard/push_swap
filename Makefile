@@ -2,7 +2,10 @@ SRCS =	srcs/main.c \
 		srcs/utils.c \
 		srcs/comparaisons.c \
 		srcs/operations/push_and_swap_stacks.c \
-		srcs/operations/rotate_stacks.c
+		srcs/operations/rotate_stacks.c \
+		srcs/utils/printers.c \
+		srcs/utils/malloc_and_free.c \
+		srcs/utils/lst_utils.c
 
 OBJS = ${SRCS:.c=.o}
 

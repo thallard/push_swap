@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 15:33:46 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/09 16:49:36 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 17:34:58 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int			find_max(t_global *g, char **stack)
 	int		save;
 
 	(void)g;
-	save = 0;
+	save = g->min[0];
 	i = -1;
 	while (stack[++i])
 		if (save < ft_atoi(stack[i]))
@@ -58,7 +58,7 @@ int			find_num(t_global *g, char **stack, int value)
 {
 	int		i;
 	(void)g;
-	i = 0;
+	i = -1;
 	while (stack[++i])
 		if (value == ft_atoi(stack[i]))
 			return (i);
@@ -70,20 +70,16 @@ int			find_num_plage(t_global *g, int start, int end)
 	int		i;
 	int		first_find;
 
-	first_find = -100;
+	first_find = -36666;
 	i = -1;
 	while (g->a[++i])
-	{
-
 		if (ft_atoi(g->a[i]) >= start && ft_atoi(g->a[i]) <= end)
 		{
-	
 			first_find = i;
 			break ;
 		}
-	}
-	if (first_find == -100)
-		return (-100);
+	if (first_find == -36666)
+		return (-36666);
 	i = get_tab_length(g->a);
 	while (--i > 0)
 	{
@@ -97,11 +93,11 @@ int			find_num_plage(t_global *g, int start, int end)
 					return (i);
 			}
 			
-			if (get_tab_length(g->a) - i < first_find && first_find != 0)
-			{
-	dprintf(1, "\n\n return ici111ewqqeweqw11111 \n\n");
-		return (i);
-			}
+	// 		if (get_tab_length(g->a) - i < first_find && first_find != 0)
+	// 		{
+	// dprintf(1, "\n\n return ici111ewqqeweqw11111 \n\n");
+	// 	return (i);
+	// 		}
 			
 			else
 			{

@@ -6,21 +6,20 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 15:17:24 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/08 21:32:23 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 17:32:53 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/global.h"
 
-// ra : rotate a - décale d’une position vers le haut tous les élements de la pile a.
-// Le premier élément devient le dernier.
-
-void	rotate_a(t_global *g)
+int	rotate_a(t_global *g)
 {
 	char	*first;
 	char	*tmp;
 	int		i;
 
+	if (get_tab_length(g->a) < 1)
+		return (0);
 	i = get_tab_length(g->a) - 1;
 	first = g->a[i];
 	while (i > 0)
@@ -31,15 +30,23 @@ void	rotate_a(t_global *g)
 		i--;
 	}
 	g->a[0] = first;
-	print_stacks(g);
+	g->coups++;
+	if (!(g->action = ft_strdup("ra")) || !add_lst_to_free(g, g->action))
+		return (0);
+	if (g->vizualizer)
+		print_stacks(g);
+		return (1);
+
 }
 
-void	rotate_b(t_global *g)
+int	rotate_b(t_global *g)
 {
 	char	*first;
 	char	*tmp;
 	int		i;
 
+	if (get_tab_length(g->b) < 1)
+		return (0);
 	i = get_tab_length(g->b) - 1;
 	first = g->b[i];
 	while (i > 0)
@@ -50,15 +57,22 @@ void	rotate_b(t_global *g)
 		i--;
 	}
 	g->b[0] = first;
-	print_stacks(g);
+	g->coups++;
+	if (!(g->action = ft_strdup("rb")) || !add_lst_to_free(g, g->action))
+		return (0);
+	if (g->vizualizer)
+		print_stacks(g);
+	return (1);
 }
 
-void	reverse_rotate_b(t_global *g)
+int	reverse_rotate_b(t_global *g)
 {
 	char	*last;
 	char	*tmp;
 	int		i;
 
+	if (get_tab_length(g->b) < 1)
+		return (0);
 	i = 0;
 	last = g->b[i];
 	while (i < get_tab_length(g->b) - 1)
@@ -69,28 +83,38 @@ void	reverse_rotate_b(t_global *g)
 		i++;
 	}
 	g->b[get_tab_length(g->b) - 1] = last;
-	print_stacks(g);
+	g->coups++;
+		if (!(g->action = ft_strdup("rrb")) || !add_lst_to_free(g, g->action))
+		return (0);
+	if (g->vizualizer)
+		print_stacks(g);
+	return (1);
+
 }
 
-void	reverse_rotate_a(t_global *g)
+int	reverse_rotate_a(t_global *g)
 {
 		char	*last;
 	char	*tmp;
 	int		i;
 
 	i = 0;
-	if (get_tab_length(g->a) >= 2)
+	if (get_tab_length(g->a) < 1)
+		return (0);
+	last = g->a[i];
+	while (i < get_tab_length(g->a) - 1)
 	{
-		last = g->a[i];
-		while (i < get_tab_length(g->a) - 1)
-		{
-			tmp = g->a[i];
-			g->a[i] = g->a[i + 1];
-			g->a[i + 1] = tmp;
-			i++;
-		}
-		g->a[get_tab_length(g->a) - 1] = last;
-		
-		print_stacks(g);
+		tmp = g->a[i];
+		g->a[i] = g->a[i + 1];
+		g->a[i + 1] = tmp;
+		i++;
 	}
+	g->a[get_tab_length(g->a) - 1] = last;
+	g->coups++;
+		if (!(g->action = ft_strdup("rra")) || !add_lst_to_free(g, g->action))
+		return (0);
+	if (g->vizualizer)
+		print_stacks(g);
+	return (1);
+
 }
