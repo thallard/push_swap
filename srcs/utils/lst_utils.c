@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 18:15:25 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/10 15:41:55 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/12 02:32:55 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,21 @@ void	ft_lstmalloc_add_back(t_malloc **alst, t_malloc *new)
 		elem = ft_lstmalloc_last(*alst);
 		elem->next = new;
 	}
+}
+
+void	ft_lstmalloc_clear(t_malloc **lst, void (*del)(void *))
+{
+	t_malloc	*elem;
+	t_malloc	*next;
+
+	elem = *lst;
+	while (elem)
+	{
+		next = elem->next;
+		if (elem->content)
+			del(elem->content);
+		free(elem);
+		elem = next;
+	}
+	*lst = NULL;
 }

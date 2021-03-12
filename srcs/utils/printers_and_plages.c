@@ -1,45 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printers.c                                         :+:      :+:    :+:   */
+/*   printers_and_plages.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 17:51:47 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/11 17:34:02 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/12 02:45:50 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/global.h"
 
-void	print_stack_a(t_global *g)
+int		raise_plage(t_global *g)
 {
-	int		i;
-
-	i = -1;
-	printf("\n");
-	while (g->a[++i])
-	{
-		printf("\033[0;33m%s\n", g->a[i]);
-	}
-	printf("\n");
-}
-
-void	print_stack_b(t_global *g)
-{
-	int		i;
-
-	i = -1;
-	printf("Pile B :\n");
-	while (g->b[++i])
-		printf("\033[1;32m%s\n", g->b[i]);
-	printf("\n");
+	g->start = g->min[g->push];
+	if (g->push + g->increment > g->size)
+		g->push = g->size - 1;
+	else
+	g->push += g->increment;
+	g->end = g->min[g->push];
+	return (1);
 }
 
 void	print_stacks(t_global *g)
 {
 	int		i;
 
+    if (!g->vizualizer && printf("%s\n", g->action))
+        return ;
 	usleep(200000);
 	i = -1;
 	printf("\x1b[2J");
@@ -49,18 +38,17 @@ void	print_stacks(t_global *g)
     printf("|_______________|_______________|\n");
 	while (++i < 99999)
 	{
-		if (i > get_tab_length(g->b) && i > get_tab_length(g->a))
+		if (i > len(g->b) && i > len(g->a))
 			break ;
-		if (i < get_tab_length(g->a))
-			printf("|\e[92m%7s        \e[0m", g->a[get_tab_length(g->a) - 1 - i]);
+		if (i < len(g->a))
+			printf("|\e[92m%7s        \e[0m", g->a[len(g->a) - 1 - i]);
 		else
 			printf("|\e[92m%7s        \e[0m", "\0");
-		if (i < get_tab_length(g->b))
-			printf("|\e[93m%7s        \e[0m|\n",   g->b[get_tab_length(g->b) - 1 -i]);
+		if (i < len(g->b))
+			printf("|\e[93m%7s        \e[0m|\n",   g->b[len(g->b) - 1 - i]);
 		else
 			printf("|\e[93m%7s        \e[0m|\n", "\0");
 	}
 	printf("|_______________|_______________|\n");
 	printf("| Coups = \033[0;32m%-6d\e[0m| Action = \033[0;35m%-5s\e[0m|\n", g->coups, g->action);
-
 }

@@ -6,13 +6,13 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 16:04:25 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/09 17:52:30 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/12 02:11:53 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/global.h"
 
-int		get_tab_length(char **tab)
+int		len(char **tab)
 {
 	int		i;
 
@@ -22,3 +22,72 @@ int		get_tab_length(char **tab)
 	return (i);
 }
 
+void	init_global_struct(t_global *global)
+{
+	global->coups = 0;
+	global->vizualizer = 0;
+	global->action = NULL;
+	global->lst_free = NULL;
+}
+
+void	create_reference_tab(t_global *g)
+{
+	int		size;
+	int		temp;
+	int		i;
+
+	i = 0;
+	size = -1;
+	g->min = malloc_lst(sizeof(int) * 1000, g);
+	while (g->a[++size])
+		g->min[size] = ft_atoi(g->a[size]);
+	g->size = size;
+	while (i < (size - 1))
+	{
+		if (g->min[i] > g->min[i + 1])
+		{
+			temp = g->min[i];
+			g->min[i] = g->min[i + 1];
+			g->min[i + 1] = temp;
+			i = 0;
+		}
+		else
+			i++;
+	}
+}
+
+int		define_plages(t_global *g)
+{
+	int		plages;
+	int		length;
+
+	plages = 0;
+	length = len(g->a);
+	if (length <= 10)
+		plages = 5;
+	if (length >= 10 && length <= 50)
+		plages = 10;
+	if (length >= 50 && length <= 100)
+		plages = 20;
+	else if (length <= 50)
+		plages = 20;
+	else if (length >= 100 && length <= 300)
+		plages = 35;
+	else if (length >= 300)
+		plages = 50;
+	return (plages);
+}
+
+int			count_nb_words(t_global *g, char **argv)
+{
+	int			nb;
+	int			i;
+
+	i = 0 + g->vizualizer;
+	nb = 0;
+	while (argv[++i])
+	{
+		
+	}
+	return (nb);
+}
