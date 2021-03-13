@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:06:00 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/12 17:17:49 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/13 14:20:48 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int			define_plages(t_global *g);
 void		init_global_struct(t_global *g);
 void		create_reference_tab(t_global *g);
 int			count_nb_words(t_global *g, char **argv);
+int			is_sorted(t_global *g);
 
 int			swap_a(t_global *g);
 int			swap_b(t_global *g);

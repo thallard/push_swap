@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 17:51:47 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/13 13:12:41 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/13 14:20:34 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,19 @@ int		raise_plage(t_global *g)
 	else
 	g->push += g->increment;
 	g->end = g->min[g->push];
+	return (1);
+}
+
+int		is_sorted(t_global *g)
+{
+	int		i;
+	int		j;
+
+	j = len(g->a) - 1;
+	i = -1;
+	while (--j < 0 && g->min[i])
+		if (ft_atoi(g->a[j]) != g->min[i])
+			return (0);
 	return (1);
 }
 

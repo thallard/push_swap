@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 14:58:48 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/13 13:24:39 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/13 14:22:42 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,15 @@ int		main(int argc, char **argv)
 	}
 	create_reference_tab(global);
 	global->increment = define_plages(global);
-	if (len(global->a) != 5)
+	dprintf(1, "debug de sorted = %d\n", is_sorted(global));
+	if (len(global->a) != 5 && !is_sorted(global))
 		ft_split_stacks(global);
-	else
+	else if (len(global->a) == 5 && !is_sorted(global))
 	{
 		printf("beosin de creer une nouvelle fonction\n");
 		mini_algo(global);
 	}
+	else
+	print_stacks(global);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 16:54:22 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/12 01:32:25 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/13 14:16:46 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		push_a(t_global *g)
 		g->coups++;
 	}
 	if (!(g->action = ft_strdup("pa")) || !add_lst_to_free(g, g->action))
-		return (0);
+		ft_exit(g);
 	print_stacks(g);
 	return (1);
 }
@@ -45,7 +45,7 @@ int		push_b(t_global *g)
 		g->coups++;
 	}
 	if (!(g->action = ft_strdup("pb")) || !add_lst_to_free(g, g->action))
-		return (0);
+		ft_exit(g);
 	print_stacks(g);
 	return (1);
 }
@@ -62,7 +62,7 @@ int		swap_a(t_global *g)
 		g->coups++;
 	}
 	if (!(g->action = ft_strdup("sa")) || !add_lst_to_free(g, g->action))
-		return (0);
+		ft_exit(g);
 	print_stacks(g);
 	return (1);
 }
@@ -79,7 +79,7 @@ int		swap_b(t_global *g)
 		g->coups++;
 	}
 	if (!(g->action = ft_strdup("sb")) || !add_lst_to_free(g, g->action))
-		return (0);
+		ft_exit(g);
 	print_stacks(g);
 	return (1);
 }

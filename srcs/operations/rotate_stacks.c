@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 15:17:24 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/12 17:29:23 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/13 14:16:37 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	rotate_a(t_global *g)
 	g->a[0] = first;
 	g->coups++;
 	if (!(g->action = ft_strdup("ra")) || !add_lst_to_free(g, g->action))
-		return (0);
+		ft_exit(g);
 	print_stacks(g);
 	return (1);
 }
@@ -57,7 +57,7 @@ int	rotate_b(t_global *g)
 	g->b[0] = first;
 	g->coups++;
 	if (!(g->action = ft_strdup("rb")) || !add_lst_to_free(g, g->action))
-		return (0);
+		ft_exit(g);
 	print_stacks(g);
 	return (1);
 }
@@ -82,7 +82,7 @@ int	reverse_rotate_b(t_global *g)
 	g->b[len(g->b) - 1] = last;
 	g->coups++;
 	if (!(g->action = ft_strdup("rrb")) || !add_lst_to_free(g, g->action))
-		return (0);
+		ft_exit(g);
 	print_stacks(g);
 	return (1);
 
