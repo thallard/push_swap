@@ -6,13 +6,13 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 16:04:25 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/13 14:23:24 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/13 14:26:20 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/global.h"
 
-int		len(char **tab)
+int			len(char **tab)
 {
 	int		i;
 
@@ -22,7 +22,7 @@ int		len(char **tab)
 	return (i);
 }
 
-void	init_global_struct(t_global *global)
+void		init_global_struct(t_global *global)
 {
 	global->coups = 0;
 	global->vizualizer = 0;
@@ -30,7 +30,7 @@ void	init_global_struct(t_global *global)
 	global->lst_free = NULL;
 }
 
-void	create_reference_tab(t_global *g)
+void		create_reference_tab(t_global *g)
 {
 	int		size;
 	int		temp;
@@ -56,7 +56,7 @@ void	create_reference_tab(t_global *g)
 	}
 }
 
-int		define_plages(t_global *g)
+int			define_plages(t_global *g)
 {
 	int		plages;
 	int		length;

@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 17:51:47 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/13 14:20:34 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/13 15:21:08 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		raise_plage(t_global *g)
 	if (g->push + g->increment > g->size)
 		g->push = g->size - 1;
 	else
-	g->push += g->increment;
+		g->push += g->increment;
 	g->end = g->min[g->push];
 	return (1);
 }
@@ -28,27 +28,37 @@ int		is_sorted(t_global *g)
 	int		i;
 	int		j;
 
-	j = len(g->a) - 1;
+	j = len(g->a);
 	i = -1;
-	while (--j < 0 && g->min[i])
+	while (--j > 0 && g->min[++i])
 		if (ft_atoi(g->a[j]) != g->min[i])
 			return (0);
 	return (1);
+}
+
+void	start_prepare_stacks(t_global *g)
+{
+	int		i;
+
+	(void)g;
+	i = -1;
+	while (++i < 999999)
+		;
+	printf("\x1b[2J");
+	printf("\x1b[H");
+	printf("\e[0m|_______________|_______________|\n");
+	printf("|\e[92m%-15s\e[0m|\e[93m%15s\e[0m|\n", "STACK A", "STACK B");
+	printf("|_______________|_______________|\n");
 }
 
 void	print_stacks(t_global *g)
 {
 	int		i;
 
-    if (!g->vizualizer && printf("%s\n", g->action))
-        return ;
-	usleep(900000);
+	if (!g->vizualizer && printf("%s\n", g->action))
+		return ;
 	i = -1;
-	printf("\x1b[2J");
-    printf("\x1b[H");
-    printf("\e[0m|_______________|_______________|\n");
-    printf("|\e[92m%-15s\e[0m|\e[93m%15s\e[0m|\n","STACK A", "STACK B");
-    printf("|_______________|_______________|\n");
+	start_prepare_stacks(g);
 	while (++i < 99999)
 	{
 		if (i > len(g->b) && i > len(g->a))
@@ -58,10 +68,11 @@ void	print_stacks(t_global *g)
 		else
 			printf("|\e[92m%7s        \e[0m", "\0");
 		if (i < len(g->b))
-			printf("|\e[93m%7s        \e[0m|\n",   g->b[len(g->b) - 1 - i]);
+			printf("|\e[93m%7s        \e[0m|\n", g->b[len(g->b) - 1 - i]);
 		else
 			printf("|\e[93m%7s        \e[0m|\n", "\0");
 	}
 	printf("|_______________|_______________|\n");
-	printf("| Coups = \033[0;32m%-6d\e[0m| Action = \033[0;35m%-5s\e[0m|\n", g->coups, g->action);
+	printf("| Coups = \033[0;32m%-6d\e[0m| Action = \033[0;35m%-5s\e[0m|\n",
+		g->coups, g->action);
 }

@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 18:15:25 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/12 02:32:55 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/13 14:27:44 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_malloc	*ft_lstmalloc_last(t_malloc *lst)
 	return (lst);
 }
 
-void	ft_lstmalloc_add_back(t_malloc **alst, t_malloc *new)
+void		ft_lstmalloc_add_back(t_malloc **alst, t_malloc *new)
 {
 	t_malloc	*elem;
 
@@ -45,7 +45,7 @@ void	ft_lstmalloc_add_back(t_malloc **alst, t_malloc *new)
 	}
 }
 
-void	ft_lstmalloc_clear(t_malloc **lst, void (*del)(void *))
+void		ft_lstmalloc_clear(t_malloc **lst, void (*del)(void *))
 {
 	t_malloc	*elem;
 	t_malloc	*next;

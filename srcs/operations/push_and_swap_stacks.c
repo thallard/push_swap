@@ -6,12 +6,11 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 16:54:22 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/13 14:16:46 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/13 15:20:47 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/global.h"
-
 
 int		push_a(t_global *g)
 {
@@ -25,6 +24,8 @@ int		push_a(t_global *g)
 		g->b[len(g->b) - 1] = NULL;
 		g->coups++;
 	}
+	else
+		return (0);
 	if (!(g->action = ft_strdup("pa")) || !add_lst_to_free(g, g->action))
 		ft_exit(g);
 	print_stacks(g);
@@ -37,13 +38,14 @@ int		push_b(t_global *g)
 
 	if (len(g->a) >= 1)
 	{
-	
 		size_b = len(g->b);
 		g->b[size_b] = g->a[len(g->a) - 1];
 		g->b[size_b + 1] = NULL;
 		g->a[len(g->a) - 1] = NULL;
 		g->coups++;
 	}
+	else
+		return (0);
 	if (!(g->action = ft_strdup("pb")) || !add_lst_to_free(g, g->action))
 		ft_exit(g);
 	print_stacks(g);

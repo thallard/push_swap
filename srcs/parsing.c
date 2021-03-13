@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 01:51:41 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/12 17:11:52 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/13 14:31:20 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ static int		ft_contains_alpha(char *num)
 	return (1);
 }
 
-int		ft_check_doubles(t_global *g, int argc)
+int				ft_check_doubles(t_global *g, int argc)
 {
 	int		i;
 	int		j;
 
 	j = -1;
 	i = -1 + g->vizualizer;
-	while (++j < argc && (i = -1  + g->vizualizer) < 0)
+	while (++j < argc && (i = -1 + g->vizualizer) < 0)
 		while (g->a[++i] && g->a[j])
 			if (i != j)
 				if (!ft_strncmp(g->a[i], g->a[j], 11))
@@ -38,7 +38,7 @@ int		ft_check_doubles(t_global *g, int argc)
 	return (1);
 }
 
-int		fill_content_spaces(t_global *g, int line, char *str)
+int				fill_content_spaces(t_global *g, int line, char *str)
 {
 	int		i;
 
@@ -54,7 +54,7 @@ int		fill_content_spaces(t_global *g, int line, char *str)
 	return (line);
 }
 
-int		ft_init_stack(t_global *g, int argc, char **a)
+int				ft_init_stack(t_global *g, int argc, char **a)
 {
 	int		i;
 	int		j;
@@ -71,10 +71,9 @@ int		ft_init_stack(t_global *g, int argc, char **a)
 			return (0);
 		if (ft_strchr(a[i], ' '))
 			j = fill_content_spaces(g, j, a[i]);
-		else
-			if (!(g->a[++j] = ft_itoa(ft_atoi(a[i])))
+		else if (!(g->a[++j] = ft_itoa(ft_atoi(a[i])))
 				|| !add_lst_to_free(g, g->a[j]))
-				ft_exit(g);
+			ft_exit(g);
 	}
 	g->a[++j] = NULL;
 	if (!ft_check_doubles(g, argc))

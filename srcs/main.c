@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 14:58:48 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/13 14:22:42 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/13 14:34:25 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,35 +36,33 @@ int		fill_sort_stack_b(t_global *g)
 	return (1);
 }
 
-int		empty_stack_a(t_global *g, int pos)
+void	empty_stack_a(t_global *g, int p)
 {
-	while (len(g->a) != 0)
+	while (len(g->a) != 0 && (p = find_num_plage(g, g->start, g->end)) < 900000)
 	{
-		pos = find_num_plage(g, g->start, g->end);
-		if (pos == -36666 && raise_plage(g))
+		if (p == -36666 && raise_plage(g))
 			continue ;
-		if (pos == len(g->a) - 1)
+		if (p == len(g->a) - 1)
 			push_b(g);
-		else if (len(g->a) / 2 <= pos)
+		else if (len(g->a) / 2 <= p)
 		{
-			while (pos-- >= 0)
+			while (p-- >= 0)
 				rotate_a(g);
 			push_b(g);
 		}
-		else if (len(g->a) / 2 > pos)
+		else if (len(g->a) / 2 > p)
 		{
-			if (!pos)
+			if (!p)
 			{
 				reverse_rotate_a(g);
 				push_b(g);
 				continue ;
 			}
-			while (pos-- >= 0)
+			while (p-- >= 0)
 				reverse_rotate_a(g);
 			push_b(g);
 		}
 	}
-	return (1);
 }
 
 int		ft_split_stacks(t_global *g)
@@ -77,7 +75,6 @@ int		ft_split_stacks(t_global *g)
 		ft_exit(g);
 	return (1);
 }
-
 
 int		main(int argc, char **argv)
 {
@@ -94,15 +91,11 @@ int		main(int argc, char **argv)
 	}
 	create_reference_tab(global);
 	global->increment = define_plages(global);
-	dprintf(1, "debug de sorted = %d\n", is_sorted(global));
 	if (len(global->a) != 5 && !is_sorted(global))
 		ft_split_stacks(global);
 	else if (len(global->a) == 5 && !is_sorted(global))
-	{
-		printf("beosin de creer une nouvelle fonction\n");
 		mini_algo(global);
-	}
 	else
-	print_stacks(global);
+		print_stacks(global);
 	return (0);
 }

@@ -6,13 +6,13 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 15:33:46 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/12 17:14:17 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/13 14:25:58 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/global.h"
 
-int		is_max(t_global *g, char **stack, int value)
+int			is_max(t_global *g, char **stack, int value)
 {
 	int		i;
 
@@ -83,7 +83,7 @@ int			find_num_plage(t_global *g, int start, int end)
 	while (--i > 0)
 		if (ft_atoi(g->a[i]) >= start && ft_atoi(g->a[i]) <= end)
 		{
-			if (first_find == 0 && i == len(g->a) - 1)	
+			if (first_find == 0 && i == len(g->a) - 1)
 				return (i);
 			else
 				return (first_find);
