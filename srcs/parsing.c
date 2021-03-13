@@ -6,11 +6,11 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 01:51:41 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/13 14:31:20 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/13 15:44:34 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/global.h"
+#include "../includes/push_swap.h"
 
 static int		ft_contains_alpha(char *num)
 {

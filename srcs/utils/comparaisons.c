@@ -6,11 +6,11 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 15:33:46 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/13 14:25:58 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/13 15:44:34 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/global.h"
+#include "../../includes/push_swap.h"
 
 int			is_max(t_global *g, char **stack, int value)
 {

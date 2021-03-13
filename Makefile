@@ -11,7 +11,7 @@ SRCS =	srcs/main.c \
 
 OBJS = ${SRCS:.c=.o}
 
-HEADER = includes/global.h includes/libft.h
+HEADER = includes/push_swap.h includes/libft.h
 
 NAME = push_swap
 

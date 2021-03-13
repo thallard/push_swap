@@ -6,11 +6,11 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 17:15:41 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/13 15:37:50 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/13 15:44:34 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/global.h"
+#include "../includes/push_swap.h"
 
 int		solve_cas(t_global *g)
 {
