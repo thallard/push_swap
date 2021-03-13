@@ -6,11 +6,11 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 16:04:25 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/12 02:11:53 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/12 17:15:19 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/global.h"
+#include "../../includes/global.h"
 
 int		len(char **tab)
 {
@@ -82,12 +82,22 @@ int			count_nb_words(t_global *g, char **argv)
 {
 	int			nb;
 	int			i;
+	int			j;
 
-	i = 0 + g->vizualizer;
-	nb = 0;
+	(void)g;
+	i = 0;
+	nb = 2;
 	while (argv[++i])
 	{
-		
+		j = 0;
+		while (argv[i][j])
+		{
+			while (argv[i][j] && argv[i][j] != ' ')
+				j++;
+			nb++;
+			while (argv[i][j] && argv[i][j] == ' ')
+				j++;
+		}
 	}
-	return (nb);
+	return (nb + 1);
 }

@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 14:58:48 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/12 02:50:54 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/12 17:17:35 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int		empty_stack_a(t_global *g, int pos)
 			push_b(g);
 		else if (len(g->a) / 2 <= pos)
 		{
-			while (pos-- > 0)
+			while (pos-- >= 0)
 				rotate_a(g);
 			push_b(g);
 		}
@@ -94,15 +94,12 @@ int		main(int argc, char **argv)
 	}
 	create_reference_tab(global);
 	global->increment = define_plages(global);
-	printf("\x1b[2J");
 	if (len(global->a) > 6)
-	{
-		if (!(ft_split_stacks(global)))
-			return (printf("Error : Malloc failed.\n"));
-	}
+		ft_split_stacks(global);
 	else
 	{
 		printf("beosin de creer une nouvelle fonction\n");
+		mini_algo(global);
 	}
 	return (0);
 }

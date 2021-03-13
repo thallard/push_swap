@@ -1,6 +1,7 @@
 SRCS =	srcs/main.c \
-		srcs/utils.c \
-		srcs/comparaisons.c \
+		srcs/mini_algo.c \
+		srcs/utils/utils.c \
+		srcs/utils/comparaisons.c \
 		srcs/parsing.c \
 		srcs/operations/push_and_swap_stacks.c \
 		srcs/operations/rotate_stacks.c \
@@ -17,7 +18,6 @@ NAME = push_swap
 CC = gcc
 
 RM = rm -f
-
 
 FLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 

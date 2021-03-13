@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 15:17:24 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/12 02:50:35 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/12 17:29:23 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,14 @@ int	rotate_a(t_global *g)
 
 	if ((i = len(g->a)) < 1)
 		return (-1);
+	i = len(g->a) - 1;
 	first = g->a[i];
-	while (--i > 0)
+	while (i > 0)
 	{
 		tmp = g->a[i];
 		g->a[i] = g->a[i - 1];
 		g->a[i - 1] = tmp;
+		i--;
 	}
 	g->a[0] = first;
 	g->coups++;

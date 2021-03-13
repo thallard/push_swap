@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 01:51:41 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/12 02:46:27 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/12 17:11:52 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,30 +46,35 @@ int		fill_content_spaces(t_global *g, int line, char *str)
 	while (++i <= (int)ft_strlen(str) && str[i])
 		if (str[i] != ' ')
 		{
-			g->a[++line] = ft_itoa(ft_atoi(&str[i]));
+			if (!(g->a[++line] = ft_itoa(ft_atoi(&str[i])))
+				|| !add_lst_to_free(g, g->a[line]))
+				ft_exit(g);
 			i += ft_strlen(g->a[line]);
 		}
 	return (line);
 }
 
-int		ft_init_stack(t_global *g, int argc, char **argv)
+int		ft_init_stack(t_global *g, int argc, char **a)
 {
 	int		i;
 	int		j;
 
 	j = -1;
 	i = 0 + g->vizualizer;
-	g->a = malloc(sizeof(char *) * (argc + 1000));
-	g->b = malloc(sizeof(char *) * (argc + 1000));
+	if (!(g->b = malloc_lst(sizeof(char *) * count_nb_words(g, a), g))
+	|| !(g->a = malloc_lst(sizeof(char *) * count_nb_words(g, a), g)))
+		ft_exit(g);
 	g->b[0] = NULL;
-	while (++i < argc && argv[i])
+	while (++i < argc && a[i])
 	{
-		if (!ft_contains_alpha(argv[i]))
+		if (!ft_contains_alpha(a[i]))
 			return (0);
-		if (ft_strchr(argv[i], ' '))
-			j = fill_content_spaces(g, j, argv[i]);
+		if (ft_strchr(a[i], ' '))
+			j = fill_content_spaces(g, j, a[i]);
 		else
-			g->a[++j] = ft_itoa(ft_atoi(argv[i]));
+			if (!(g->a[++j] = ft_itoa(ft_atoi(a[i])))
+				|| !add_lst_to_free(g, g->a[j]))
+				ft_exit(g);
 	}
 	g->a[++j] = NULL;
 	if (!ft_check_doubles(g, argc))
