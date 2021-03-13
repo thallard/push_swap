@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 17:51:47 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/12 17:30:11 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/13 13:12:41 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	print_stacks(t_global *g)
 
     if (!g->vizualizer && printf("%s\n", g->action))
         return ;
-	usleep(800000);
+	usleep(900000);
 	i = -1;
 	printf("\x1b[2J");
     printf("\x1b[H");

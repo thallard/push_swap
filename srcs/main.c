@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 14:58:48 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/12 17:17:35 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/13 13:24:39 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int		main(int argc, char **argv)
 	}
 	create_reference_tab(global);
 	global->increment = define_plages(global);
-	if (len(global->a) > 6)
+	if (len(global->a) != 5)
 		ft_split_stacks(global);
 	else
 	{
