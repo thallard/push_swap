@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 14:58:48 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/15 13:09:13 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/15 13:36:51 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ int		main(int argc, char **argv)
 	}
 	reverse_tab(global);
 	create_reference_tab(global);
-	
 	global->increment = define_plages(global);
 	if (len(global->a) != 5 && !is_sorted(global))
 		ft_split_stacks(global);

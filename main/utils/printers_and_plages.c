@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 17:51:47 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/15 13:28:40 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/15 13:45:28 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	start_prepare_stacks(t_global *g)
 
 	(void)g;
 	i = -1;
-	while (++i < 999999)
+	while (++i < 399999999)
 		;
 	printf("\x1b[2J");
 	printf("\x1b[H");
@@ -55,11 +55,16 @@ void	print_stacks(t_global *g)
 {
 	int		i;
 
-	if (!g->vizualizer && printf("%s\n", g->action))
+	if (!g->vizualizer)
+	{
+		if (g->action)
+			printf("%s\n", g->action);
 		return ;
+	}
+	
 	i = -1;
 	start_prepare_stacks(g);
-	while (++i < 99999)
+	while (++i < 9999999)
 	{
 		if (i > len(g->b) && i > len(g->a))
 			break ;
