@@ -58,7 +58,9 @@ int			push_a(t_global *g);
 int			push_b(t_global *g);
 int			rotate_a(t_global *g);
 int			rotate_b(t_global *g);
+int			rotate_both(t_global *g);
 int			reverse_rotate_b(t_global *g);
+int			reverse_rotate_both(t_global *g);
 int			reverse_rotate_a(t_global *g);
 
 int			mini_algo(t_global *g);

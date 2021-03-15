@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 16:54:22 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/15 12:35:32 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/15 14:52:22 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,15 @@ int		swap_a(t_global *g)
 		tmp = g->a[len(g->a) - 2];
 		g->a[len(g->a) - 2] = g->a[len(g->a) - 1];
 		g->a[len(g->a) - 1] = tmp;
-	
 	}
 	else
 		return (0);
 	if (!g->action || ft_strncmp(g->action, "ss", 3))
 	{
-	if (!(g->action = ft_strdup("sa")) || !add_lst_to_free(g, g->action))
-		ft_exit(g);
+		if (!(g->action = ft_strdup("sa")) || !add_lst_to_free(g, g->action))
+			ft_exit(g);
 		g->coups++;
-	print_stacks(g);
+		print_stacks(g);
 	}
 	return (1);
 }
@@ -84,18 +83,16 @@ int		swap_b(t_global *g)
 		tmp = g->b[len(g->b) - 2];
 		g->b[len(g->b) - 2] = g->b[len(g->b) - 1];
 		g->b[len(g->b) - 1] = tmp;
-		
 	}
 	else
 		return (0);
 	if (!g->action || ft_strncmp(g->action, "ss", 3))
 	{
-	if (!(g->action = ft_strdup("sb")) || !add_lst_to_free(g, g->action))
-		ft_exit(g);
+		if (!(g->action = ft_strdup("sb")) || !add_lst_to_free(g, g->action))
+			ft_exit(g);
 		g->coups++;
-	print_stacks(g);
+		print_stacks(g);
 	}
-	
 	return (1);
 }
 

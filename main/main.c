@@ -6,11 +6,21 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 14:58:48 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/15 13:36:51 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/15 14:51:36 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+int		little_algo(t_global *g)
+{
+	if (is_max(g, g->a, ft_atoi(g->a[len(g->a) - 1])))
+		rotate_a(g);
+	if (len(g->a) >= 2 && ft_atoi(g->a[len(g->a) - 1])
+		> ft_atoi(g->a[len(g->a) - 2]))
+		swap_a(g);
+	return (1);
+}
 
 int		fill_sort_stack_b(t_global *g)
 {
@@ -80,11 +90,9 @@ int		main(int argc, char **argv)
 {
 	t_global	*global;
 
-	if (!(global = malloc(sizeof(t_global))))
+	if (argc <= 1 || !(global = malloc(sizeof(t_global))))
 		return (0);
 	init_global_struct(global);
-	if (argc <= 1)
-		return (0);
 	if (!ft_strncmp("-v", argv[1], 3))
 		global->vizualizer++;
 	if (!ft_init_stack(global, argc, argv))
@@ -95,12 +103,13 @@ int		main(int argc, char **argv)
 	reverse_tab(global);
 	create_reference_tab(global);
 	global->increment = define_plages(global);
-	if (len(global->a) != 5 && !is_sorted(global))
+	if (len(global->a) >= 6 && !is_sorted(global))
 		ft_split_stacks(global);
 	else if (len(global->a) == 5 && !is_sorted(global))
 		mini_algo(global);
+	else if (len(global->a) <= 3 && !is_sorted(global))
+		little_algo(global);
 	else
 		print_stacks(global);
 	free(global);
-	return (0);
 }

@@ -5,6 +5,7 @@ SRCS =	main/main.c \
 		main/parsing.c \
 		main/operations/push_and_swap_stacks.c \
 		main/operations/rotate_stacks.c \
+		main/operations/reverse_rotate_both.c \
 		main/utils/printers_and_plages.c \
 		main/utils/malloc_and_free.c \
 		main/utils/reverse_tab.c \
@@ -17,6 +18,7 @@ SRCS_CHECKER =	main/checker.c \
 				main/parsing.c \
 				main/operations/push_and_swap_stacks.c \
 				main/operations/rotate_stacks.c \
+				main/operations/reverse_rotate_both.c \
 				main/utils/printers_and_plages.c \
 				main/utils/malloc_and_free.c \
 				main/utils/lst_utils.c \

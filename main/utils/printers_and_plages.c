@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 17:51:47 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/15 13:45:28 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/15 14:48:08 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,17 @@ int		is_sorted(t_global *g)
 	return (1);
 }
 
-void	start_prepare_stacks(t_global *g)
+int		start_prepare_stacks(t_global *g)
 {
 	int		i;
 
-	(void)g;
 	i = -1;
+	if (!g->vizualizer)
+	{
+		if (g->action)
+			printf("%s\n", g->action);
+		return (-1);
+	}
 	while (++i < 399999999)
 		;
 	printf("\x1b[2J");
@@ -49,21 +54,16 @@ void	start_prepare_stacks(t_global *g)
 	printf("\e[0m|_______________|_______________|\n");
 	printf("|\e[92m%-15s\e[0m|\e[93m%15s\e[0m|\n", "STACK A", "STACK B");
 	printf("|_______________|_______________|\n");
+	return (0);
 }
 
 void	print_stacks(t_global *g)
 {
 	int		i;
 
-	if (!g->vizualizer)
-	{
-		if (g->action)
-			printf("%s\n", g->action);
-		return ;
-	}
-	
 	i = -1;
-	start_prepare_stacks(g);
+	if (start_prepare_stacks(g) == -1)
+		return ;
 	while (++i < 9999999)
 	{
 		if (i > len(g->b) && i > len(g->a))

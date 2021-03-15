@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 15:17:24 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/13 16:00:12 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/15 14:46:06 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,13 @@ int		rotate_a(t_global *g)
 		i--;
 	}
 	g->a[0] = first;
-	g->coups++;
-	if (!(g->action = ft_strdup("ra")) || !add_lst_to_free(g, g->action))
-		ft_exit(g);
-	print_stacks(g);
+	if (!g->action || ft_strncmp(g->action, "rr", 3))
+	{
+		if (!(g->action = ft_strdup("ra")) || !add_lst_to_free(g, g->action))
+			ft_exit(g);
+		g->coups++;
+		print_stacks(g);
+	}
 	return (1);
 }
 
@@ -55,10 +58,13 @@ int		rotate_b(t_global *g)
 		i--;
 	}
 	g->b[0] = first;
-	g->coups++;
-	if (!(g->action = ft_strdup("rb")) || !add_lst_to_free(g, g->action))
-		ft_exit(g);
-	print_stacks(g);
+	if (!g->action || ft_strncmp(g->action, "rr", 3))
+	{
+		if (!(g->action = ft_strdup("rb")) || !add_lst_to_free(g, g->action))
+			ft_exit(g);
+		g->coups++;
+		print_stacks(g);
+	}
 	return (1);
 }
 
@@ -80,10 +86,13 @@ int		reverse_rotate_b(t_global *g)
 		i++;
 	}
 	g->b[len(g->b) - 1] = last;
-	g->coups++;
-	if (!(g->action = ft_strdup("rrb")) || !add_lst_to_free(g, g->action))
-		ft_exit(g);
-	print_stacks(g);
+	if (!g->action || ft_strncmp(g->action, "rrr", 4))
+	{
+		if (!(g->action = ft_strdup("rrb")) || !add_lst_to_free(g, g->action))
+			ft_exit(g);
+		g->coups++;
+		print_stacks(g);
+	}
 	return (1);
 }
 
@@ -106,8 +115,28 @@ int		reverse_rotate_a(t_global *g)
 	}
 	g->a[len(g->a) - 1] = last;
 	g->coups++;
-	if (!(g->action = ft_strdup("rra")) || !add_lst_to_free(g, g->action))
-		return (-1);
+	if (!g->action || ft_strncmp(g->action, "rrr", 4))
+	{
+		if (!(g->action = ft_strdup("rra")) || !add_lst_to_free(g, g->action))
+			ft_exit(g);
+		g->coups++;
+		print_stacks(g);
+	}
+	return (1);
+}
+
+int		rotate_both(t_global *g)
+{
+	if (len(g->b) >= 2 && len(g->a) >= 2)
+	{
+		if (!(g->action = ft_strdup("rr")) || !add_lst_to_free(g, g->action))
+			ft_exit(g);
+		rotate_b(g);
+		rotate_a(g);
+		g->coups++;
+	}
+	else
+		return (0);
 	print_stacks(g);
 	return (1);
 }

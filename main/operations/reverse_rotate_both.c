@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reverse_tab.c                                      :+:      :+:    :+:   */
+/*   reverse_rotate_both.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/15 13:01:42 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/15 14:48:26 by thallard         ###   ########lyon.fr   */
+/*   Created: 2021/03/15 14:21:52 by thallard          #+#    #+#             */
+/*   Updated: 2021/03/15 14:52:28 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-int		reverse_tab(t_global *g)
+int		reverse_rotate_both(t_global *g)
 {
-	int		i;
-	int		j;
-
-	j = len(g->a_temp);
-	i = -1;
-	if (!(g->a = malloc_lst(sizeof(char *) * (j + 2), g)))
-		ft_exit(g);
-	while (--j >= 0)
-		g->a[++i] = g->a_temp[j];
-	g->a[++i] = NULL;
+	if (len(g->b) >= 2 && len(g->a) >= 2)
+	{
+		if (!(g->action = ft_strdup("rrr")) || !add_lst_to_free(g, g->action))
+			ft_exit(g);
+		reverse_rotate_b(g);
+		reverse_rotate_a(g);
+		g->coups++;
+	}
+	else
+		return (0);
+	print_stacks(g);
 	return (1);
 }
