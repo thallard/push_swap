@@ -27,8 +27,9 @@ typedef struct		s_malloc
 typedef struct		s_global
 {
 	t_malloc		*lst_free;
-	char			**a;
+	char			**a_temp;
 	char			**b;
+	char			**a;
 	int				coups;
 	int				*min;
 	int				size;
@@ -48,9 +49,11 @@ void		init_global_struct(t_global *g);
 void		create_reference_tab(t_global *g);
 int			count_nb_words(t_global *g, char **argv);
 int			is_sorted(t_global *g);
+int			reverse_tab(t_global *g);
 
 int			swap_a(t_global *g);
 int			swap_b(t_global *g);
+int			swap_both(t_global *g);
 int			push_a(t_global *g);
 int			push_b(t_global *g);
 int			rotate_a(t_global *g);
@@ -58,7 +61,7 @@ int			rotate_b(t_global *g);
 int			reverse_rotate_b(t_global *g);
 int			reverse_rotate_a(t_global *g);
 
-int   	  mini_algo(t_global *g);
+int			mini_algo(t_global *g);
 
 int			is_max(t_global *g, char **stack, int value);
 int			find_num(t_global *g, char **stack, int value);
