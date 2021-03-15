@@ -38,7 +38,7 @@ CC = gcc
 
 RM = rm -f
 
-FLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
+FLAGS = -Wall -Wextra -Werror
 
 %.o: %.c	${HEADER}
 			${CC} ${FLAGS} -c $< -o ${<:.c=.o}

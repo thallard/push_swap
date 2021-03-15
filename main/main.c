@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 14:58:48 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/15 14:51:36 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/15 15:43:38 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int		main(int argc, char **argv)
 	if (!ft_init_stack(global, argc, argv))
 	{
 		printf("Error\n");
-		return (0);
+		ft_exit(global);
 	}
 	reverse_tab(global);
 	create_reference_tab(global);
@@ -111,5 +111,6 @@ int		main(int argc, char **argv)
 		little_algo(global);
 	else
 		print_stacks(global);
+	ft_lstmalloc_clear(&global->lst_free, free);
 	free(global);
 }
