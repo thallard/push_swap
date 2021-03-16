@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/16 10:37:40 by thallard          #+#    #+#             */
+/*   Updated: 2021/03/16 10:37:50 by thallard         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LIBFT_H
 # define LIBFT_H
 
@@ -65,7 +77,7 @@ void			*ft_memccpy(void *dest, void *src, int character, size_t len);
 void			*ft_memmove(void *dest, const void *src, size_t n);
 void			*ft_memchr(const void *dest, int character, size_t len);
 int				ft_memcmp(const void *dest, const void *source, size_t len);
-int				ft_atoi(const char *nptr);
+long			ft_atoi(const char *nptr);
 
 t_list			*ft_lstnew(void *content);
 void			ft_lstadd_front(t_list **alst, t_list *ne);

@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 01:51:41 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/15 13:06:52 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 10:31:35 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,18 @@ int				ft_check_doubles(t_global *g, int argc)
 int				fill_content_spaces(t_global *g, int line, char *str)
 {
 	int		i;
+	long	value;
 
 	i = -1;
 	while (++i <= (int)ft_strlen(str) && str[i])
 		if (str[i] != ' ')
 		{
-			if (!(g->a_temp[++line] = ft_itoa(ft_atoi(&str[i])))
+			value = ft_atoi(&str[i]);
+			if (value >= 2147483648)
+				ft_exit(g, 0);
+			if (!(g->a_temp[++line] = ft_itoa(value))
 				|| !add_lst_to_free(g, g->a_temp[line]))
-				ft_exit(g);
+				ft_exit(g, 1);
 			i += ft_strlen(g->a_temp[line]);
 		}
 	return (line);
@@ -61,19 +65,20 @@ int				ft_init_stack(t_global *g, int argc, char **a)
 
 	j = -1;
 	i = 0 + g->vizualizer;
-	if (!(g->b = malloc_lst(sizeof(char *) * count_nb_words(g, a), g))
-	|| !(g->a_temp = malloc_lst(sizeof(char *) * count_nb_words(g, a), g)))
-		ft_exit(g);
-	g->b[0] = NULL;
 	while (++i < argc && a[i])
 	{
 		if (!ft_contains_alpha(a[i]))
 			return (0);
 		if (ft_strchr(a[i], ' '))
 			j = fill_content_spaces(g, j, a[i]);
-		else if (!(g->a_temp[++j] = ft_itoa(ft_atoi(a[i])))
+		else
+		{
+			if (ft_atoi(a[i]) >= 2147483648)
+				ft_exit(g, 0);
+			if (!(g->a_temp[++j] = ft_itoa(ft_atoi(a[i])))
 				|| !add_lst_to_free(g, g->a_temp[j]))
-			ft_exit(g);
+				ft_exit(g, 1);
+		}
 	}
 	g->a_temp[++j] = NULL;
 	if (!ft_check_doubles(g, argc))

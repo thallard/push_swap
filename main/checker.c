@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:38:22 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/15 15:32:41 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 10:32:56 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int		check_and_sort(t_global *g)
 		if (!is_action(buf))
 		{
 			printf("Error\n");
+			free(buf);
 			return (0);
 		}
 		if (is_sorted(g) && len(g->b) == 0)
@@ -78,16 +79,18 @@ int		main(int argc, char **argv)
 
 	if (argc <= 1 || !(global = malloc(sizeof(t_global))))
 		return (0);
-	init_global_struct(global);
+	init_global_struct(global, argv);
 	if (!ft_strncmp("-v", argv[1], 3))
 		global->vizualizer++;
 	if (!ft_init_stack(global, argc, argv))
 	{
 		printf("Error\n");
+		ft_lstmalloc_clear(&global->lst_free, free);
+		free(global);
 		return (0);
 	}
 	if (!(check_and_sort(global)))
-		ft_exit(global);
+		ft_exit(global, 1);
 	if (is_sorted(global))
 		printf("OK\n");
 	else

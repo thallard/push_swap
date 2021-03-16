@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 13:01:42 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/15 14:48:26 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 10:16:21 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		reverse_tab(t_global *g)
 	j = len(g->a_temp);
 	i = -1;
 	if (!(g->a = malloc_lst(sizeof(char *) * (j + 2), g)))
-		ft_exit(g);
+		ft_exit(g, 1);
 	while (--j >= 0)
 		g->a[++i] = g->a_temp[j];
 	g->a[++i] = NULL;

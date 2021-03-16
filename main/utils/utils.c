@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 16:04:25 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/15 13:09:09 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 10:32:42 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,16 @@ int			len(char **tab)
 	return (i);
 }
 
-void		init_global_struct(t_global *global)
+void		init_global_struct(t_global *g, char **a)
 {
-	global->coups = 0;
-	global->vizualizer = 0;
-	global->action = NULL;
-	global->lst_free = NULL;
+	g->coups = 0;
+	g->vizualizer = 0;
+	g->action = NULL;
+	g->lst_free = NULL;
+	if (!(g->b = malloc_lst(sizeof(char *) * count_nb_words(g, a), g))
+	|| !(g->a_temp = malloc_lst(sizeof(char *) * count_nb_words(g, a), g)))
+		ft_exit(g, 1);
+	g->b[0] = NULL;
 }
 
 void		create_reference_tab(t_global *g)

@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 14:58:48 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/15 15:43:38 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 10:36:13 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int		little_algo(t_global *g)
 	if (len(g->a) >= 2 && ft_atoi(g->a[len(g->a) - 1])
 		> ft_atoi(g->a[len(g->a) - 2]))
 		swap_a(g);
+	if (!find_num(g, g->a, find_min(g, g->a)))
+		reverse_rotate_a(g);
 	return (1);
 }
 
@@ -82,7 +84,7 @@ int		ft_split_stacks(t_global *g)
 	g->start = g->min[0];
 	empty_stack_a(g, 0);
 	if (!(fill_sort_stack_b(g)))
-		ft_exit(g);
+		ft_exit(g, 1);
 	return (1);
 }
 
@@ -92,18 +94,15 @@ int		main(int argc, char **argv)
 
 	if (argc <= 1 || !(global = malloc(sizeof(t_global))))
 		return (0);
-	init_global_struct(global);
+	init_global_struct(global, argv);
 	if (!ft_strncmp("-v", argv[1], 3))
 		global->vizualizer++;
 	if (!ft_init_stack(global, argc, argv))
-	{
-		printf("Error\n");
-		ft_exit(global);
-	}
+		ft_exit(global, 0);
 	reverse_tab(global);
 	create_reference_tab(global);
 	global->increment = define_plages(global);
-	if (len(global->a) >= 6 && !is_sorted(global))
+	if ((len(global->a) >= 6 || len(global->a) == 4) && !is_sorted(global))
 		ft_split_stacks(global);
 	else if (len(global->a) == 5 && !is_sorted(global))
 		mini_algo(global);
