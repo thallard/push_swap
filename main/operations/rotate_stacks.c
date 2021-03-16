@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 15:17:24 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/16 10:15:51 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 11:03:51 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		rotate_a(t_global *g)
 	char	*tmp;
 	int		i;
 
-	if ((i = len(g->a)) < 1)
+	if ((i = len(g->a)) <= 1)
 		return (-1);
 	i = len(g->a) - 1;
 	first = g->a[i];
@@ -46,7 +46,7 @@ int		rotate_b(t_global *g)
 	char	*tmp;
 	int		i;
 
-	if (len(g->b) < 1)
+	if (len(g->b) <= 1)
 		return (-1);
 	i = len(g->b) - 1;
 	first = g->b[i];
@@ -74,7 +74,7 @@ int		reverse_rotate_b(t_global *g)
 	char	*tmp;
 	int		i;
 
-	if (len(g->b) < 1)
+	if (len(g->b) <= 1)
 		return (-1);
 	i = 0;
 	last = g->b[i];
@@ -103,7 +103,7 @@ int		reverse_rotate_a(t_global *g)
 	int		i;
 
 	i = 0;
-	if (len(g->a) < 1)
+	if (len(g->a) <= 1)
 		return (-1);
 	last = g->a[i];
 	while (i < len(g->a) - 1)

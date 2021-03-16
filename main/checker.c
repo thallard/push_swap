@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 09:38:22 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/16 10:32:56 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 10:51:55 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int		check_and_sort(t_global *g)
 		filter(g, buf);
 		if (!is_action(buf))
 		{
-			printf("Error\n");
 			free(buf);
 			return (0);
 		}
@@ -90,7 +89,7 @@ int		main(int argc, char **argv)
 		return (0);
 	}
 	if (!(check_and_sort(global)))
-		ft_exit(global, 1);
+		ft_exit(global, 0);
 	if (is_sorted(global))
 		printf("OK\n");
 	else

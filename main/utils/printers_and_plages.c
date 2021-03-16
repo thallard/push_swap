@@ -6,7 +6,7 @@
 /*   By: thallard <thallard@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 17:51:47 by thallard          #+#    #+#             */
-/*   Updated: 2021/03/15 14:48:08 by thallard         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 10:51:13 by thallard         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int		start_prepare_stacks(t_global *g)
 			printf("%s\n", g->action);
 		return (-1);
 	}
-	while (++i < 399999999)
+	while (++i < 299999999)
 		;
 	printf("\x1b[2J");
 	printf("\x1b[H");
