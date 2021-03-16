@@ -35,19 +35,19 @@ CHECK_SRCS = 	checker \
 				$(utils)/lst_utils
 
 SRCS = $(addsuffix .c, $(addprefix $(SRC_DIR), $(PRE_SRCS)))
+OBJS = $(addsuffix .o, $(addprefix $(OBJ_DIR), $(PRE_SRCS)))
 CHECKER_SRCS = $(addsuffix .c, $(addprefix $(SRC_DIR), $(CHECK_SRCS)))
 CHECKER_OBJS = $(addsuffix .o, $(addprefix $(OBJ_DIR), $(CHECK_SRCS)))
-OBJS = $(addsuffix .o, $(addprefix $(OBJ_DIR), $(PRE_SRCS)))
 
 LIBFTA = libft/libft.a
-
 NAME = push_swap
+NAME_S = checker
 CC = clang
 RM = rm -f
-CHECKER = checker
+
 # CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 CFLAGS = -Wall -Wextra -Werror -g3
-INC =	-I./includes -L./libft -lft
+INC = -I./includes -L./libft -lft
 
 all:	libft $(NAME)
 
@@ -55,14 +55,18 @@ $(NAME): $(LIBFTA) $(OBJ_DIRS) $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(INC) -o $(NAME) 
 	@echo "----- \033[32m $@ created\033[0m  -----"
 
-$(CHECKER): $(LIBFTA) $(OBJ_DIRS) $(CHECKER_OBJS)
-	$(CC) $(CFLAGS) $(CHECKER_OBJS) $(INC) -o $(CHECKER) 
+coucou: libft $(NAME_S)
+
+$(NAME_S): $(LIBFTA) $(OBJ_DIRS) $(CHECKER_OBJS)
+	$(CC) $(CFLAGS) $(CHECKER_OBJS) $(INC) -o checker 
 	@echo "----- \033[32m $@ created\033[0m  -----"
 
 $(OBJ_DIRS):
 	mkdir -p $(OBJ_DIRS)
 
 $(OBJS) : includes/push_swap.h
+
+$(CHECKER_OBJS) : includes/push_swap.h
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -79,8 +83,8 @@ clean:
 	@$(MAKE) clean -C libft
 
 fclean: 	clean
-	@$(RM) libft/libft.a
-	rm -f minishell
+			@$(RM) libft/libft.a
+			rm -f push_swap checker
 
 re:		fclean all
 
