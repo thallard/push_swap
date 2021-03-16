@@ -84,4 +84,4 @@ fclean: 	clean
 
 re:		fclean all
 
-.PHONY: all clean fclean re libft
+.PHONY: all clean fclean re libft checker
